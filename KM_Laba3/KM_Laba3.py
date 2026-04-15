@@ -79,8 +79,8 @@ class InventorySystem:
 
 
 np.random.seed(42)
-days = 200
-demand_sequence_main = np.random.poisson(lam=42, size=days)
+days = 300
+demand_sequence_main = np.random.poisson(lam=30, size=days)
 demand_scale_factor = np.random.poisson(lam=1, size=days)
 final_demand_sequence = demand_sequence_main * demand_scale_factor
 
@@ -88,10 +88,10 @@ print("Последовательность дневного спроса на �
 print(final_demand_sequence)
 
 storage_cost_rate = np.random.randint(0, 10)
-fixed_order_expense = np.random.randint(50, 300)
+fixed_order_expense = np.random.randint(30, 100)
 backlog_penalty = np.random.randint(10, 100)
 delivery_delay = np.random.randint(1, 5)
-start_amount = np.random.randint(50, 300)
+start_amount = np.random.randint(100, 300)
 
 def evaluate(s, S, demand_sequence, days, **kwargs):
     sys = InventorySystem(s, S, **kwargs)
@@ -99,8 +99,8 @@ def evaluate(s, S, demand_sequence, days, **kwargs):
         sys.process_day(demand_value)
     return sys.total_cost() / days, sys
 
-s_range = range(10, 200, 20)
-S_range = range(20, 400, 20)
+s_range = range(60, 220, 20)
+S_range = range(100, 420, 20)
 
 best_cost = float('inf')
 best_s, best_S = None, None
